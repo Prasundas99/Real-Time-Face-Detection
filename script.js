@@ -1,6 +1,7 @@
+// capturing html area
 const video = document.getElementById('video')
 
-
+//loading all models
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
   faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
@@ -9,6 +10,7 @@ Promise.all([
 ]).then(startVideo)
 
 
+// start video when model is ready
 function startVideo() {
   navigator.getUserMedia(
     { video: {} },
@@ -17,7 +19,7 @@ function startVideo() {
   )
 }
 
-
+// view face recognisation to user
 video.addEventListener('play', () => {
   const canvas = faceapi.createCanvasFromMedia(video)
   document.body.append(canvas)
